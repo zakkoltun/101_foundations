@@ -6,10 +6,10 @@ def valid_number?(number_string)
   number_string.to_i != 0
 end
 
-
 def operation_to_msg(op)
-  ops = {'1' => 'Adding', '2' => 'Subtracting', '3' => 'Multiplying', '4' => 'Dividing'}
-  return ops[op]
+  ops = { '1' => 'Adding', '2' => 'Subtracting',
+          '3' => 'Multiplying', '4' => 'Dividing' }
+  ops[op]
 end
 
 prompt "Welcome to Calculator!"
@@ -27,8 +27,7 @@ end
 
 prompt("Hi #{name}!")
 
-loop do   # main loop
-
+loop do # main loop
   number1 = ""
   number2 = ""
 
@@ -55,10 +54,10 @@ loop do   # main loop
   end
 
   operator_prompt = <<-MSG
-What operation would you like to perform? 
-    1) add 
-    2) subtract 
-    3) multiply 
+What operation would you like to perform?
+    1) add
+    2) subtract
+    3) multiply
     4) divide
   MSG
 
@@ -74,17 +73,16 @@ What operation would you like to perform?
     end
   end
 
-
   result = case operator
            when '1'
-            number1.to_i + number2.to_i
+             number1.to_i + number2.to_i
            when '2'
-            number1.to_i - number2.to_i
+             number1.to_i - number2.to_i
            when '3'
-            number1.to_i * number2.to_i
-           when '4' 
-            number1.to_f / number2.to_f
-  end
+             number1.to_i * number2.to_i
+           when '4'
+             number1.to_f / number2.to_f
+           end
 
   prompt("#{operation_to_msg(operator)} the two numbers...")
 
