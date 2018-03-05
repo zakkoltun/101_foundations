@@ -1,5 +1,5 @@
 def prompt(message)
-  Kernel.puts("=> #{message}")
+  Kernel.puts "=> #{message}"
 end
 
 def valid_number?(number_string)
@@ -12,15 +12,14 @@ def operation_to_msg(op)
   return ops[op]
 end
 
-prompt("Welcome to Calculator!")
-puts operation_to_msg('1')
+prompt "Welcome to Calculator!"
 
 name = ''
 loop do
-  prompt("What's your name?")
-  name = Kernel.gets().chomp()
-  if name.empty?()
-    prompt('Make sure to use a valid name.')
+  prompt "What's your name?"
+  name = Kernel.gets.chomp
+  if name.empty?
+    prompt 'Make sure to use a valid name.'
   else
     break
   end
