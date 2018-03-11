@@ -6,7 +6,8 @@ end
 
 def win?(first, second)
   winning_choices = { 'rock' => %w(scissors lizard), 'paper' => %w(rock spock),
-                      'scissors' => %w(paper lizard), 'spock' => %w(rock scissors),
+                      'scissors' => %w(paper lizard),
+                      'spock' => %w(rock scissors),
                       'lizard' => %w(paper spock) }
   winning_choices[first].include? second
 end
@@ -23,11 +24,11 @@ end
 
 def winner?(player, computer)
   if win?(player, computer)
-    return 1
+    1
   elsif win?(computer, player)
-    return -1
+    -1
   else
-    return 0
+    0
   end
 end
 
@@ -80,7 +81,7 @@ loop do # main loop
   end
 
   prompt "Your score: #{player_score}; Computer score: #{computer_score}"
-  
+ 
   if player_score == 5
     prompt "You are the grand winner! Match is over."
     break

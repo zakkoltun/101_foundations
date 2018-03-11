@@ -1,0 +1,11 @@
+1. doesn't equal, can be used in comparisons between variables/values
+
+2. negates the truthiness of the value it's put in front of 
+
+3. indicates (but doesn't guarantee) that method mutates input
+
+4. can be used in statements like x = (1==1) ? 1 : 0
+
+5. indicates (But doesn't guarantee) that method returns boolean
+
+6. double negation; essentially converts object to its corresponding boolean value

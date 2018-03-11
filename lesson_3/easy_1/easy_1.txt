@@ -1,0 +1,8 @@
+Will print:
+
+1
+2
+2
+3
+
+Numbers is not mutated (would need to use uniq!)

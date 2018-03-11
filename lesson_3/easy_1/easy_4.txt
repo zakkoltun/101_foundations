@@ -1,0 +1,2 @@
+4. numbers.delete_at(1) will mutate the object and delete whatever's at index 1 (the 2nd spot). numbers.delete(1) will delete all instances of 1 in the array.
+
