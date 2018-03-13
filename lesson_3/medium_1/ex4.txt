@@ -1,0 +1,1 @@
+The first method mutates the input buffer, while the 2nd leaves it intact.
