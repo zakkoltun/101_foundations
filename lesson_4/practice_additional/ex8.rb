@@ -1,0 +1,2 @@
+# [1, 3], since the first element is removed at the end of each block, but the loop index keeps going up by 1
+# [1, 2], since the last element is removed at the end of each block, and the loop index keeps going up by one

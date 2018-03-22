@@ -1,0 +1,50 @@
+1. 
+
+[1, 2, 3]
+It uses the truthiness of the return value of the block to determine whether to select element "num". In this case, the block always returns 'hi', which is truthy.
+
+
+2.
+
+Check documentation. Count() uses the truthiness of the return value of the block. Should return 1 in this case.
+
+
+3.
+
+[1, 2, 3]
+puts evaluates to "nil", and reject always chooses elements that are false or nil
+
+
+4.
+
+{ 'a' => 'ant', 'b' => 'bear', 'c' => 'cat' }
+
+
+5.
+
+Check documentation. Shift removes and returns the key value pair [:a, 'ant']. hash is mutated and only contains b.
+
+
+6.
+
+11, since it pops the string 'caterpillar' and returns the length of that string.
+
+
+7.
+
+Each block returns a boolean, since .odd? is the last line of the block. any? returns a single boolean, true if any of the elements of the array are truthy and false otherwise.
+
+
+8.
+
+check documentation. take(n) returns the first n elements of the array.
+
+
+9.
+
+[nil, bear]. Map iterates over each kv pair and adds the value to the output array if it's longer than 3, otherwise "if" returns nil.
+
+
+10.
+
+Block returns nil if num > 1, and returns num otherwise. Map returns [1, nil, nil]
