@@ -8,8 +8,6 @@ WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] +
                 [[1, 4, 7], [2, 5, 8], [3, 6, 9]] +
                 [[1, 5, 9], [3, 5, 7]]
 
-BOARD_WIDTH = 3
-
 def prompt(msg)
   puts "=> #{msg}"
 end
@@ -103,6 +101,17 @@ def computer_places_piece!(brd)
   brd[square] = COMPUTER_MARKER
 end
 
+def place_piece!(brd, current_player)
+  case current_player
+  when PLAYER_MARKER then player_places_piece!(brd)
+  when COMPUTER_MARKER then computer_places_piece!(brd)
+  end
+end
+
+def alternate_player(current_player)
+  current_player == PLAYER_MARKER ? COMPUTER_MARKER : PLAYER_MARKER
+end
+
 player_wins = 0
 computer_wins = 0
 
@@ -112,13 +121,12 @@ loop do
   display_board board
   prompt "Player wins: #{player_wins}, Computer wins: #{computer_wins}"
 
+  current_player = PLAYER_MARKER
   loop do
-    player_places_piece! board
     display_board board
-    break if someone_won?(board) || board_full?(board)
-
-    computer_places_piece! board
+    place_piece!(board, current_player)
     display_board board
+    current_player = alternate_player(current_player)
     break if someone_won?(board) || board_full?(board)
   end
 
