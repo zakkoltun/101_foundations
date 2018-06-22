@@ -8,6 +8,8 @@ WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] +
                 [[1, 4, 7], [2, 5, 8], [3, 6, 9]] +
                 [[1, 5, 9], [3, 5, 7]]
 
+BOARD_WIDTH = 3
+
 def prompt(msg)
   puts "=> #{msg}"
 end
@@ -64,6 +66,19 @@ def detect_winner(brd)
   nil
 end
 
+def find_at_risk_square(brd, marker)
+  at_risk_square = nil
+  other_marker = (marker == PLAYER_MARKER) ? COMPUTER_MARKER : PLAYER_MARKER  # set other_marker to opposite of marker
+
+  WINNING_LINES.each do |winning_line|
+    line_values = brd.values_at(*winning_line)
+    if line_values.count(other_marker) == 2 && line_values.count(marker) == 0
+      at_risk_square = winning_line[line_values.index(INITIAL_MARKER)]
+    end
+  end
+  at_risk_square
+end
+
 def player_places_piece!(brd)
   square = ''
   loop do
@@ -76,24 +91,49 @@ def player_places_piece!(brd)
 end
 
 def computer_places_piece!(brd)
-  square = empty_squares(brd).sample
+  square = nil
+
+  case 
+  when find_at_risk_square(brd, PLAYER_MARKER) then square = find_at_risk_square(brd, PLAYER_MARKER)
+  when find_at_risk_square(brd, COMPUTER_MARKER) then square = find_at_risk_square(brd, COMPUTER_MARKER)
+  when empty_squares(brd).include?(5) then square = 5
+  else square = empty_squares(brd).sample
+  end
+
   brd[square] = COMPUTER_MARKER
 end
+
+player_wins = 0
+computer_wins = 0
 
 # main loop
 loop do
   board = initialize_board
   display_board board
+  prompt "Player wins: #{player_wins}, Computer wins: #{computer_wins}"
 
   loop do
     player_places_piece! board
+    display_board board
+    break if someone_won?(board) || board_full?(board)
+
     computer_places_piece! board
     display_board board
     break if someone_won?(board) || board_full?(board)
   end
 
   if someone_won?(board)
-    prompt "#{detect_winner(board)} won!"
+    winner = detect_winner(board)
+    prompt "#{winner} won!"
+
+    winner == 'Player' ? player_wins += 1 : computer_wins += 1 
+    if player_wins == 5
+      prompt "Player has won 5 games. Congratulations!"
+      break
+    elsif computer_wins == 5
+      prompt "Computer has won 5 games. Better luck next time!"
+      break
+    end
   else
     prompt "It's a tie!"
   end
